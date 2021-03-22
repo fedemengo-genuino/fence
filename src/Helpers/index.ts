@@ -30,11 +30,10 @@ export function formatResourceName (resource: TResource): string {
   }
 
   if (typeof resource === 'object' && resource.constructor.name === 'Object') {
-    if (resource._className !== null) {
+    if(resource._className) {
         return resource._className
     }
-
-    return Object.keys(resource).join('-')
+    return Object.keys(resource).join('-');
   }
 
   // @ts-ignore
