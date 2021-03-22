@@ -18,12 +18,20 @@ export function formatResourceName (resource: TResource): string {
     return resource.name
   }
 
+  if (typeof resource === 'object' && resource.constructor.name === 'Array') {
+    // @ts-ignore
+    return resource.map(formatResourceName).join('-');
+  }
+
   if (typeof resource === 'object' && resource.constructor.name !== 'Object') {
     return resource.constructor.name
   }
 
   if (typeof resource === 'object' && resource.constructor.name === 'Object') {
-    return resource._className
+    if(resource._className) {
+        return resource._className
+    }
+    return Object.keys(resource).join('-');
   }
 
   // @ts-ignore
