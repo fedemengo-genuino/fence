@@ -7,7 +7,6 @@
     "moduleResolution": "node",
     "outDir": "dist",
     "rootDir": "src",
-    "strictNullChecks": true,
     "target": "es2016"
   },
   "include": [

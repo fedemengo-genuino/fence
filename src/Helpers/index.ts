@@ -20,7 +20,9 @@ export function formatResourceName (resource: TResource): string {
 
   if (typeof resource === 'object' && resource.constructor.name === 'Array') {
     // @ts-ignore
-    return resource.map(formatResourceName).join('-');
+    const resArray = resource as any[]
+
+    return resArray.map(formatResourceName).join('-')
   }
 
   if (typeof resource === 'object' && resource.constructor.name !== 'Object') {
@@ -28,10 +30,11 @@ export function formatResourceName (resource: TResource): string {
   }
 
   if (typeof resource === 'object' && resource.constructor.name === 'Object') {
-    if(resource._className) {
+    if (resource._className !== null) {
         return resource._className
     }
-    return Object.keys(resource).join('-');
+
+    return Object.keys(resource).join('-')
   }
 
   // @ts-ignore
